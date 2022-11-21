@@ -1,5 +1,5 @@
 name: sembast_client_dart
-description: 036 Sembast Query, para hacer consultas a archivos de Sembast DB
+description: A CLI client for basic manipulation of sembast database files
 version: 1.0.0
 
 environment:
