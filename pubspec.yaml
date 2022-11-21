@@ -1,0 +1,20 @@
+name: sembast_client_dart
+description: 036 Sembast Query, para hacer consultas a archivos de Sembast DB
+version: 1.0.0
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+dependencies:
+  console: ^4.1.0
+  dcli: ^1.36.0
+  crypto: ^3.0.2
+  encrypt: ^5.0.1
+  fpdart: ^0.3.0
+  kiwi: ^4.0.3
+  sembast: ^3.3.1
+
+dev_dependencies:
+  build_runner: ^2.3.2
+  kiwi_generator: ^4.0.3
+  lints: ^2.0.1
