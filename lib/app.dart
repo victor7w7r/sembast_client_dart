@@ -1,13 +1,18 @@
 import 'dart:io';
 
 import 'package:console/console.dart' show Chooser;
-import 'package:dcli/dcli.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:dcli/dcli.dart' show cyan, green;
+import 'package:get_it/get_it.dart' show GetIt;
+import 'package:fpdart/fpdart.dart' show IO, TaskEither;
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
+
+final locator = GetIt.instance;
+
+void setup() => GetIt.I.registerLazySingleton<App>(() => App());
 
 class App {
 

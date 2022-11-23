@@ -1,13 +1,13 @@
-import 'dart:io' show stdin;
-
+import 'package:console/console.dart' show Console;
 import 'package:fpdart/fpdart.dart';
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 
 Future<void> use(String store) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   StoreRef<int, Map<String, Object?>> storeRefInt;
   StoreRef<String, Map<String, Object?>> storeRefStr;
@@ -30,7 +30,7 @@ Future<void> use(String store) async {
 
   if(storeInt && storeStr) {
     lang(47, PrintQuery.inline);
-    final keyType = stdin.readLineSync()!;
+    final keyType = Console.readLine()!;
     if(keyType == "int") {
       app.storeSelector(store, storeInt: intMapStoreFactory.store(store));
     } else if(keyType == "str") {

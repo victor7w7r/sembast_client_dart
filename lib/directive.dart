@@ -2,13 +2,14 @@ import 'dart:io' show exit;
 
 import 'package:dcli/dcli.dart' show green;
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/commands/index.dart';
 import 'package:sembast_client_dart/utils/commands.dart';
 
 Future<void> directive(List<String> cmd) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   switch(cmd[0]) {
 

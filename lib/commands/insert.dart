@@ -1,15 +1,15 @@
-import 'dart:io' show stdout, stdin;
-
+import 'package:console/console.dart' show Console;
 import 'package:dcli/dcli.dart' show green;
 
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> insert(String key) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   if(app.isIntKeys) {
     if(isNumeric(key)) {
@@ -25,8 +25,8 @@ Future<void> insert(String key) async {
           keyVal = "";
           value = "";
           while(keyVal == "") {
-            stdout.write(lang(32));
-            keyVal = stdin.readLineSync()!.trim();
+            Console.write(lang(32));
+            keyVal = Console.readLine()!.trim();
             if(keyVal == "*") break;
             if(keyVal == "%") return;
             if(record.containsKey(keyVal) && keyVal != "") {
@@ -35,8 +35,8 @@ Future<void> insert(String key) async {
             }
           }
           while(value == "" && keyVal != "*") {
-            stdout.write(lang(34));
-            value = stdin.readLineSync()!.trim();
+            Console.write(lang(34));
+            value = Console.readLine()!.trim();
           }
           if(keyVal != "*") record.addAll({keyVal: value});
         }
@@ -61,8 +61,8 @@ Future<void> insert(String key) async {
         keyVal = "";
         value = "";
         while(keyVal == "") {
-          stdout.write(lang(32));
-          keyVal = stdin.readLineSync()!.trim();
+          Console.write(lang(32));
+          keyVal = Console.readLine()!.trim();
           if(keyVal == "*") break;
           if(keyVal == "%") return;
           if(record.containsKey(keyVal) && keyVal != "") {
@@ -71,8 +71,8 @@ Future<void> insert(String key) async {
           }
         }
         while(value == "" && keyVal != "*") {
-          stdout.write(lang(34));
-          value = stdin.readLineSync()!.trim();
+          Console.write(lang(34));
+          value = Console.readLine()!.trim();
         }
         if(keyVal != "*") record.addAll({keyVal: value});
       }

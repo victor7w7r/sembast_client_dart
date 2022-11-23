@@ -1,15 +1,16 @@
-import 'dart:io';
+import 'dart:io' show Platform, File;
 
 import 'package:dcli/dcli.dart' show green;
 import 'package:fpdart/fpdart.dart';
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> limit(String start, String end) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   List<Map<String,Object?>> listIntKeys = [];
   List<Map<String,Object?>> listStrKeys = [];

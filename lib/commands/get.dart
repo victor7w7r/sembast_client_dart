@@ -2,12 +2,13 @@ import 'package:dcli/dcli.dart' show green;
 
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> getRec(String key) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   if(app.isIntKeys) {
     if(isNumeric(key)) {

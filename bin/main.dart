@@ -1,13 +1,13 @@
 import 'dart:io' show stdout, stdin;
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
 import 'package:sembast_client_dart/directive.dart';
 
 Future<void> main(List<String> args) async {
 
   setup();
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
   await app.init(args);
 
   while(true) {

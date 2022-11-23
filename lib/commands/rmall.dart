@@ -1,14 +1,12 @@
-import 'dart:io' show stdout, stdin;
-
-import 'package:dcli/dcli.dart' show green;
-
+import 'package:console/console.dart' show Console;
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 
 Future<void> rmall() async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   List<Map<String,Object?>> listIntKeys = [];
   List<Map<String,Object?>> listStrKeys = [];
@@ -26,16 +24,16 @@ Future<void> rmall() async {
     return;
   }
 
-  stdout.write(lang(42));
+  Console.write(lang(42));
 
   if(app.isIntKeys) {
-    final keyType = stdin.readLineSync()!;
+    final keyType = Console.readLine()!;
     if(keyType == "s" || keyType == "S" || keyType == "y" || keyType == "Y") {
       await app.storeRefInt!.delete(app.db);
       lang(43, PrintQuery.normal);
     }
   } else {
-    final keyType = stdin.readLineSync()!;
+    final keyType = Console.readLine()!;
     if(keyType == "s" || keyType == "S" || keyType == "y" || keyType == "Y") {
       await app.storeRefStr!.delete(app.db);
       lang(43, PrintQuery.normal);

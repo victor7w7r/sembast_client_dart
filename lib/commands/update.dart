@@ -1,15 +1,14 @@
-import 'dart:io' show stdout, stdin;
-
+import 'package:console/console.dart' show Console;
 import 'package:dcli/dcli.dart' show green;
-
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> update(String key) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   if(app.isIntKeys) {
     if(isNumeric(key)) {
@@ -21,8 +20,8 @@ Future<void> update(String key) async {
         String keyVal = "";
         String value = "";
         while(keyVal == "") {
-          stdout.write(lang(45));
-          keyVal = stdin.readLineSync()!.trim();
+          Console.write(lang(45));
+          keyVal = Console.readLine()!.trim();
           if(keyVal == "%") return;
           if(!recOp.containsKey(keyVal) && keyVal != "") {
             lang(46, PrintQuery.error);
@@ -30,8 +29,8 @@ Future<void> update(String key) async {
           }
         }
         while(value == "") {
-          stdout.write(lang(34));
-          value = stdin.readLineSync()!.trim();
+          Console.write(lang(34));
+          value = Console.readLine()!.trim();
         }
         await app.storeRefInt!.record(int.parse(key)).update(app.db, {keyVal: value});
         lang(44, PrintQuery.normal);
@@ -50,8 +49,8 @@ Future<void> update(String key) async {
       String keyVal = "";
       String value = "";
       while(keyVal == "") {
-        stdout.write(lang(45));
-        keyVal = stdin.readLineSync()!.trim();
+        Console.write(lang(45));
+        keyVal = Console.readLine()!.trim();
         if(keyVal == "%") return;
         if(!recOp.containsKey(keyVal) && keyVal != "") {
           lang(46, PrintQuery.error);
@@ -59,8 +58,8 @@ Future<void> update(String key) async {
         }
       }
       while(value == "") {
-        stdout.write(lang(34));
-        value = stdin.readLineSync()!.trim();
+        Console.write(lang(34));
+        value = Console.readLine()!.trim();
       }
       await app.storeRefStr!.record(key).update(app.db, {keyVal: value});
       lang(44, PrintQuery.normal);

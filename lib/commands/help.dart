@@ -1,6 +1,6 @@
 import 'package:dcli/dcli.dart' show orange;
 
-import 'package:sembast_client_dart/config/lang.dart';
+import 'package:sembast_client_dart/lang.dart';
 
 void help() {
   print("");

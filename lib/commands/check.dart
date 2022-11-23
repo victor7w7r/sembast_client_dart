@@ -1,11 +1,12 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:fpdart/fpdart.dart' show TaskEither;
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 
 Future<void> check(String store) async {
 
-  final db = container.resolve<App>().db;
+  final db = locator.get<App>().db;
 
   StoreRef<int, Map<String, Object?>> storeRefInt;
   StoreRef<String, Map<String, Object?>> storeRefStr;

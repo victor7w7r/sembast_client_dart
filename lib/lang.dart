@@ -1,13 +1,13 @@
 import 'package:console/console.dart' show Console;
 import 'package:dcli/dcli.dart' show cyan, red;
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
 
 enum PrintQuery { normal, inline, warn, error }
 
 String lang(int index, [PrintQuery? typeQuery, List<String>? custom]) {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   List<String> dictEsp = [
     "No has especificado un archivo de base de datos.",

@@ -2,12 +2,13 @@ import 'dart:io' show Platform, File;
 
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> ls() async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   List<Map<String,Object?>> listIntKeys = [];
   List<Map<String,Object?>> listStrKeys = [];

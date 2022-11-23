@@ -1,15 +1,14 @@
-import 'dart:io' show stdout, stdin;
-
+import 'package:console/console.dart' show Console;
 import 'package:dcli/dcli.dart' show green;
-
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/number.dart';
 
 Future<void> rm(String key) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   if(app.isIntKeys) {
     if(isNumeric(key)) {
@@ -18,8 +17,8 @@ Future<void> rm(String key) async {
         lang(38, PrintQuery.error);
         app.pre = green(":( ");
       } else {
-        stdout.write(lang(39));
-        final keyType = stdin.readLineSync()!;
+        Console.write(lang(39));
+        final keyType = Console.readLine()!;
         if(keyType == "s" || keyType == "S" || keyType == "y" || keyType == "Y") {
           await app.storeRefInt!.record(int.parse(key)).delete(app.db);
           lang(40, PrintQuery.normal);
@@ -35,8 +34,8 @@ Future<void> rm(String key) async {
       lang(38, PrintQuery.error);
       app.pre = green(":( ");
     } else {
-      stdout.write(lang(39));
-      final keyType = stdin.readLineSync()!;
+      Console.write(lang(39));
+      final keyType = Console.readLine()!;
       if(keyType == "s" || keyType == "S" || keyType == "y" || keyType == "Y") {
         await app.storeRefStr!.record(key).delete(app.db);
         lang(40, PrintQuery.normal);

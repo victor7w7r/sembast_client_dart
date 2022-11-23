@@ -1,16 +1,17 @@
 import 'dart:convert' show jsonDecode;
-import 'dart:io' show stdout, stdin;
 
+import 'package:console/console.dart' show Console;
 import 'package:dcli/dcli.dart' show green;
 import 'package:fpdart/fpdart.dart';
 import 'package:sembast/sembast.dart';
 
-import 'package:sembast_client_dart/config/index.dart';
+import 'package:sembast_client_dart/app.dart';
+import 'package:sembast_client_dart/lang.dart';
 import 'package:sembast_client_dart/utils/index.dart';
 
 Future<void> ujson(String key) async {
 
-  final app = container.resolve<App>();
+  final app = locator.get<App>();
 
   if(app.isIntKeys) {
     if(isNumeric(key)) {
@@ -19,8 +20,8 @@ Future<void> ujson(String key) async {
         lang(15, PrintQuery.error);
         app.pre = green(":( ");
       } else {
-        stdout.write("JSON: ");
-        final jsonEl = stdin.readLineSync()!.trim();
+        Console.write("JSON: ");
+        final jsonEl = Console.readLine()!.trim();
         if(jsonEl.startsWith('{') && jsonEl.endsWith('}')) {
           await TaskEither.tryCatch(IO(() => jsonEl.replaceAll("'", '"'))
             .map((jsonFiltered) => jsonDecode(jsonFiltered))
@@ -49,8 +50,8 @@ Future<void> ujson(String key) async {
       lang(15, PrintQuery.error);
       app.pre = green(":( ");
     } else {
-      stdout.write("JSON: ");
-      final jsonEl = stdin.readLineSync()!.trim();
+      Console.write("JSON: ");
+      final jsonEl = Console.readLine()!.trim();
       if(jsonEl.startsWith('{') && jsonEl.endsWith('}')) {
         await TaskEither.tryCatch(IO(() => jsonEl.replaceAll("'", '"'))
           .map((jsonFiltered) => jsonDecode(jsonFiltered))
