@@ -12,7 +12,7 @@ import 'package:sembast_client_dart/utils/index.dart';
 
 final locator = GetIt.instance;
 
-void setup() => GetIt.I.registerLazySingleton<App>(() => App());
+void setup() => GetIt.I.registerSingleton<App>(App());
 
 class App {
 
