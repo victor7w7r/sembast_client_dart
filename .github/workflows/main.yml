@@ -16,7 +16,8 @@ jobs:
             --volume "$PWD:$PWD" \
             --workdir "$PWD" \
             docker.io/library/dart:latest \
-            /bin/sh -c "mikdir armlinux && dart pub get && dart compile exe bin/main.dart -o armlinux/sembast_cli_linuxarm64"
+            /bin/sh -c "mkdir armlinux && dart pub get && dart compile exe bin/main.dart -o armlinux/sembast_cli_linuxarm64"
+      - run: ls -l armlinux
       - uses: actions/upload-artifact@v2
         with:
           name: sembast_cli_linuxarm64
