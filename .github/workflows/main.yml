@@ -23,7 +23,6 @@ jobs:
         with:
           name: sembast_cli_linuxarm64
           path: armlinux
-
   armrelease:
     needs: compile
     name: Release to Repository for arm64
