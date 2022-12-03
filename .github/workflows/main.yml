@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-qemu-action@v2
-      - run: |
+        run: |
           docker run --rm \
             --platform linux/arm64 \
             --volume "$PWD:$PWD" \
