@@ -30,7 +30,7 @@ jobs:
           path: ${{ matrix.runs-on }}
   armcompile:
     name: Compile for arm64
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-qemu-action@v2
@@ -40,12 +40,11 @@ jobs:
             --volume "$PWD:$PWD" \
             --workdir "$PWD" \
             docker.io/library/dart:latest \
-            /bin/sh -c "mkdir aarch64 && dart pub get && dart compile exe bin/main.dart -o aarch64/sembast_cli_linuxarm64"
-      - run: file aarch64/sembast_cli_linuxarm64
+            /bin/sh -c "mkdir docker-aarch64 && dart pub get && dart compile exe bin/main.dart -o docker-aarch64/sembast_cli_linuxarm64"
       - uses: actions/upload-artifact@v2
         with:
-          name: bin-sembast_cli_linuxarm64
-          path: aarch64
+          name: bin-docker-aarch64
+          path: docker-aarch64
 
   release:
     needs: compile
@@ -75,7 +74,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: bin-ubuntu-arm
+          name: bin-docker-aarch64
           path: bin-aarch64
       - uses: softprops/action-gh-release@v1
         with:
