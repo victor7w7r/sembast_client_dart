@@ -28,6 +28,26 @@ jobs:
         with:
           name: bin-${{ matrix.runs-on }}
           path: ${{ matrix.runs-on }}
+  armcompile:
+    name: Compile for arm64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - uses: uraimo/run-on-arch-action@v2
+      with:
+        arch: arm64
+        distro: ubuntu20.04
+    - uses: dart-lang/setup-dart@v1.3
+      with:
+        sdk: stable
+        architecture: arm64
+    - run: dart pub get
+    - run: mkdir armlinux
+    - run: dart compile exe bin/main.dart -o bin/sembast_cli_linuxarm64
+    - uses: actions/upload-artifact@v2
+      with:
+        name: sembast_cli_linuxarm64
+        path: armlinux
 
   release:
     needs: compile
@@ -46,6 +66,19 @@ jobs:
         with:
           name: bin-windows-latest
           path: bin-windows
+      - uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: bin-*/*
+  armrelease:
+    needs: armcompile
+    name: Release to Repository for arm64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: sembast_cli_linuxarm64
+          path: armlinux
       - uses: softprops/action-gh-release@v1
         with:
           draft: true
