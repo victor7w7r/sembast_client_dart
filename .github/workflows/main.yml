@@ -42,6 +42,7 @@ jobs:
             --workdir "$PWD" \
             docker.io/library/dart:latest \
             /bin/sh -c "dart pub get && dart compile exe bin/main.dart -o bin/sembast_cli_linuxarm64"
+
       - name: Upload
       - uses: actions/upload-artifact@v2
         with:
