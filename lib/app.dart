@@ -16,7 +16,7 @@ void setup() => GetIt.I.registerSingleton<App>(App());
 
 class App {
 
-  late Database db;
+  late final Database db;
 
   StoreRef<int, Map<String, Object?>>? storeRefInt;
   StoreRef<String, Map<String, Object?>>? storeRefStr;
