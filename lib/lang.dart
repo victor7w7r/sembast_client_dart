@@ -9,7 +9,7 @@ String lang(int index, [PrintQuery? typeQuery, List<String>? custom]) {
 
   final app = locator.get<App>();
 
-  List<String> dictEsp = [
+  final dictEsp = [
     "No has especificado un archivo de base de datos.",
     "Este archivo no existe.",
     "Este archivo no es válido para la lectura",
@@ -66,7 +66,7 @@ String lang(int index, [PrintQuery? typeQuery, List<String>? custom]) {
     "El valor de inicio debe ser menor al valor final",
   ];
 
-  List<String> dictEng = [
+  final dictEng = [
     "Database file not found in args",
     "This file not found.",
     "This file is not a database file.",
